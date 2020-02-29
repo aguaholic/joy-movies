@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <navbar></navbar>
+    <NavBar />
     <list></list>
     <footer></footer>
   </div>
@@ -8,8 +8,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import NavBar from '../NavBar.vue'
 
 export default Vue.extend({
   name: 'Home',
+  components: {
+    NavBar,
+  }
 });
 </script>
