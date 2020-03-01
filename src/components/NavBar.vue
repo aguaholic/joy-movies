@@ -21,8 +21,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.bg-info  {
+  background-color: #102E4A !important;
+}
 .navbar {
-      padding: 0;
+  padding: 0;
 }
 
 a {

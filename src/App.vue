@@ -19,6 +19,7 @@ export default Vue.extend({
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  background-color: #E1E8EF;
   width: 100vw;
 }
 </style>

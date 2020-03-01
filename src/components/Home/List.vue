@@ -27,7 +27,7 @@ export default Vue.extend({
 .list {
       padding: 40px;
       margin: 10px 15%;
-      background-color: #FCFC7E;
+      background-color: #F8F5EE;
 }
 </style>
 
