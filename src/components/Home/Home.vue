@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <NavBar />
-    <List v-bind:items="items"/>
+      <List v-bind:items="items"/>
     <footer></footer>
   </div>
 </template>
@@ -16,11 +16,11 @@ export default Vue.extend({
     data() {
       return {
         items: [
-          { title: 'A'},
-          { title: 'B'},
-          { title: 'C'},
-          { title: 'D'},
-          { title: 'E'}
+          { title: 'A', src:"https://picsum.photos/300/300/?image=20", rating:"10", releaseYear:"1988"},
+          { title: 'B', src:"https://picsum.photos/300/300/?image=20", rating:"3", releaseYear:"1998"},
+          { title: 'C', src:"https://picsum.photos/300/300/?image=20", rating:"5", releaseYear:"2008"},
+          { title: 'D', src:"https://picsum.photos/300/300/?image=20", rating:"6", releaseYear:"2018"},
+          { title: 'E', src:"https://picsum.photos/300/300/?image=20", rating:"8", releaseYear:"1978"}
         ]
       }
   },
