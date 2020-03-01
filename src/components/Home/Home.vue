@@ -2,7 +2,7 @@
   <div class="home">
     <NavBar />
       <List v-bind:items="items"/>
-    <footer></footer>
+      <Footer />
   </div>
 </template>
 
@@ -11,6 +11,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import NavBar from '../NavBar.vue'
 import List from './List.vue'
+import Footer from '../Footer.vue'
 
 interface Item {
   title: string,
@@ -68,6 +69,7 @@ export default Vue.extend({
   components: {
     NavBar,
     List,
+    Footer,
   },
 });
 </script>
