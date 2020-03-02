@@ -14,6 +14,7 @@ import List from './List.vue'
 import Footer from '../Footer.vue'
 
 interface Item {
+  id: number,
   title: string,
   src: string, 
   rating: number,
@@ -36,6 +37,7 @@ export default Vue.extend({
           .map(item => {
             if (item.backdrop_path) {
               return { 
+                id: item.id,
                 title: item.title,
                 src: 'https://image.tmdb.org/t/p/w500'+ item.backdrop_path, 
                 rating: item.vote_average,
@@ -43,6 +45,7 @@ export default Vue.extend({
               }
             } else if (item.poster_path){
               return { 
+                id: item.id,
                 title: item.title,
                 src: 'https://image.tmdb.org/t/p/w500'+ item.poster_path, 
                 rating: item.vote_average,
@@ -50,6 +53,7 @@ export default Vue.extend({
               }
             } else {
               return { 
+                id: item.id,
                 title: item.title,
                 src: null, 
                 rating: item.vote_average,
@@ -57,6 +61,7 @@ export default Vue.extend({
               }
             }
           })
+         console.log(response)
         })
         .catch(function (error) {
           console.log(error);

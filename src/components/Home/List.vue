@@ -12,13 +12,13 @@ import Vue from 'vue';
 import ListItem from './ListItem.vue'
 
 export default Vue.extend({
-  name: 'List',
-  components: {
-        ListItem,
-  },
-  props: {
-      items: Array
-  },
+      name: 'List',
+      components: {
+            ListItem,
+      },
+      props: {
+            items: Array
+      },
 });
 </script>
 

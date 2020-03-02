@@ -1,5 +1,5 @@
 <template>
-      <li class="list-item">
+      <li class="list-item" v-on:click="showDetail">
             <b-card no-body class="overflow-hidden">
                   <b-row no-gutters>
                         <b-col md="4">
@@ -26,6 +26,11 @@ export default Vue.extend({
       props: {
             item: Object
       },
+      methods: {
+            showDetail() {
+                  alert("Hey")
+            }
+      }
 });
 </script>
 
