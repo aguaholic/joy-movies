@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Home from '../src/components/Home/Home.vue'
+import Detail from '../src/components/Home/Detail.vue'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
@@ -14,7 +15,7 @@ Vue.use(VueRouter)
 
 const routes = [
   { path: "/", component: Home },
-  // { path: "/", component: Home },
+  { path: '/detail/:id', name: 'detail', component: Detail },
 ]
 
 const router = new VueRouter({

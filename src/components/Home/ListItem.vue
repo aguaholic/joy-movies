@@ -28,7 +28,7 @@ export default Vue.extend({
       },
       methods: {
             showDetail() {
-                  alert("Hey")
+                  return this.$router.push({ name: 'detail', params: { id: this.item.id }})
             }
       }
 });
