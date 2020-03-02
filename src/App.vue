@@ -17,5 +17,6 @@ export default Vue.extend({
   font-family: Avenir, Helvetica, Arial, sans-serif;
   background-color: #E1E8EF;
   width: 100vw;
+  padding-top: 60px;
 }
 </style>

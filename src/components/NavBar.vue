@@ -25,6 +25,9 @@ export default Vue.extend({
   background-color: #102E4A !important;
 }
 .navbar {
+  position: fixed;
+  top: 0;
+  z-index: 1;
   padding: 0;
 }
 
