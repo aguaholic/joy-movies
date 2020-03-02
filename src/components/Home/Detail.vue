@@ -17,6 +17,7 @@
                                     <p> {{ movie.overview }}</p>
                               </b-col>
                         </b-row>
+                        <b-button class="button" v-on:click="goBack">Back</b-button>      
                   </b-card>
             </div>
             <Footer />
@@ -107,5 +108,10 @@ export default Vue.extend({
 }
 .card {
       padding: 0 20px;
+}
+.button {
+      margin: auto;
+      border-color: #102E4A;
+      background-color: #102E4A;
 }
 </style>
