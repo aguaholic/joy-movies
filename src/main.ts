@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import Home from '../src/components/Home/Home.vue'
 import Detail from '../src/components/Home/Detail.vue'
+import Random from '../src/components/Random.vue'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
@@ -16,8 +17,7 @@ Vue.use(VueRouter)
 const routes = [
   { path: "/", component: Home },
   { path: '/detail/:id', name: 'detail', component: Detail },
-  // { path: '/detail/:id/recommended/:id',  component: Detail },
-
+  { path: '/random', component: Random },
 ]
 
 const router = new VueRouter({
