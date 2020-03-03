@@ -100,6 +100,9 @@ export default Vue.extend({
       mounted() {
             this.fetchItem()
       },
+      updated() {
+            this.fetchItem()
+      }
 });
 </script>
 

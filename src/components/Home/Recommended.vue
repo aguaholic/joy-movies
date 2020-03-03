@@ -1,6 +1,6 @@
 <template>
-      <div class="recommended" >
-            <div v-for="(recItem, index) in recommendedItems" v-bind:key="index" on:click="showDetail">
+      <div class="recommended">
+            <div v-for="(recItem, index) in recommendedItems" v-bind:key="index" v-on:click="showDetail($event, recItem)" >
                   <b-card
                         v-bind:title="recItem.title"
                         v-bind:img-src="recItem.src" 
@@ -24,7 +24,7 @@ export default Vue.extend({
       name: 'Recommended',
       data() {
             return {
-                  recommendedItems: null
+                  recommendedItems: null,
             }
       },
       methods: {
@@ -65,23 +65,29 @@ export default Vue.extend({
                                           src: null, 
                                           rating: item.vote_average,
                                           releaseYear: item.release_date,
-                                           overview: item.overview,
+                                          overview: item.overview,
                                           popularity: item.popularity,
                                           revenue: item.revenue,
                                           totalVotes: item.vote_count,
                                           }
                                     }
                               })
-                              console.log("Recommended",  this.recommendedItems)
+                              console.log("Recommended",  this.recommendedItems, this.item.id)
                         })
                         .catch(function (error) {
                               console.log(error);
                         })
                   },
+            showDetail(e, item) {
+                  this.$router.push({ name: 'detail', params: { id: item.id }})
             },
+      },
       mounted() {
             this.fetchRecommended()
       },
+      updated() {
+            this.fetchRecommended()
+      }
 });
 </script>
 
@@ -90,6 +96,11 @@ export default Vue.extend({
             width: 100%;
             display: inline-flex;
             justify-content: space-between;
+      }
+      @media only screen and (max-width: 600px) {
+            .recommended {
+                  flex-direction: column;
+            }
       }
       img:hover {
             cursor: pointer;
