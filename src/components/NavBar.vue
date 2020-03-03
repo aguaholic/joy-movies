@@ -13,29 +13,27 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+  import Vue from 'vue';
 
-export default Vue.extend({
-  name: 'NavBar',
-});
+  export default Vue.extend({
+    name: 'NavBar',
+  });
 </script>
 
 <style scoped>
-.bg-info  {
-  background-color: #102E4A !important;
-}
-.navbar {
-  position: fixed;
-  top: 0;
-  z-index: 1;
-  padding: 0;
-}
-
-a {
-      margin: 10px;
-}
-
-nav {
-      width: 100%;
-}
+  .bg-info  {
+    background-color: #102E4A !important;
+  }
+  .navbar {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    padding: 0;
+  }
+  a {
+        margin: 10px;
+  }
+  nav {
+        width: 100%;
+  }
 </style>
