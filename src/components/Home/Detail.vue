@@ -11,7 +11,6 @@
                                     <p>Popularity: {{ movie.popularity }}</p>
                                     <p>Total revenue: {{ movie.revenue }}</p>
                                     <p>Total of votes: {{ movie.totalVotes }}</p>
-                                    <p>Homepage: <a href="movie.homepage">{{ movie.homepage }}</a></p>
                               </b-col>
                               <b-col md="6">
                                     <p> {{ movie.overview }}</p>
@@ -59,7 +58,6 @@ export default Vue.extend({
                                                 releaseYear: movie.release_date,
                                                 overview: movie.overview,
                                                 popularity: movie.popularity,
-                                                homepage: movie.homepage,
                                                 revenue: movie.revenue,
                                                 totalVotes: movie.vote_count,
                                           }
@@ -72,7 +70,6 @@ export default Vue.extend({
                                           releaseYear: movie.release_date,
                                           overview: movie.overview,
                                           popularity: movie.popularity,
-                                          homepage: movie.homepage,
                                           revenue: movie.revenue,
                                           totalVotes: movie.vote_count,
                                           }
@@ -83,7 +80,11 @@ export default Vue.extend({
                                           title: movie.title,
                                           src: null, 
                                           rating: movie.vote_average,
-                                          releaseYear: movie.release_date
+                                          releaseYear: movie.release_date,
+                                           overview: movie.overview,
+                                          popularity: movie.popularity,
+                                          revenue: movie.revenue,
+                                          totalVotes: movie.vote_count,
                                           }
                                     }
                               })
@@ -101,17 +102,27 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.detail {
-      padding: 40px;
-      margin: 10px 15%;
-      background-color: #F8F5EE;
-}
-.card {
-      padding: 0 20px;
-}
-.button {
-      margin: auto;
-      border-color: #102E4A;
-      background-color: #102E4A;
-}
+      .detail {
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            margin: 10px 15%;
+            background-color: #F8F5EE;
+      }
+      @media only screen and (max-width: 600px) {
+            .detail {
+                  padding: 0;
+            }
+      }
+      img {
+            margin: 0 auto 20px;
+      }
+      .card {
+            padding: 0 20px;
+      }
+      .button {
+            margin: auto;
+            border-color: #102E4A;
+            background-color: #102E4A;
+      }
 </style>
