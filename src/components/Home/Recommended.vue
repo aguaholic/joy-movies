@@ -17,8 +17,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
 import axios from 'axios'
+
+import { getItem } from '../../helpers/getItem'
 
 export default Vue.extend({
       name: 'Recommended',
@@ -33,46 +34,7 @@ export default Vue.extend({
                         .then(response => {
                               this.recommendedItems = response.data.results
                               .slice(0, 3)
-                              .map(item => {
-                                     if (item.backdrop_path) {
-                                          return {
-                                                id: item.id,
-                                                src: 'https://image.tmdb.org/t/p/w500'+ item.backdrop_path, 
-                                                title: item.title,
-                                                rating: item.vote_average,
-                                                releaseYear: item.release_date,
-                                                overview: item.overview,
-                                                popularity: item.popularity,
-                                                revenue: item.revenue,
-                                                totalVotes: item.vote_count,
-                                          }
-                                    } else if (item.poster_path){
-                                          return { 
-                                          id: item.id,
-                                          title: item.title,
-                                          src: 'https://image.tmdb.org/t/p/w500'+ item.poster_path, 
-                                          rating: item.vote_average,
-                                          releaseYear: item.release_date,
-                                          overview: item.overview,
-                                          popularity: item.popularity,
-                                          revenue: item.revenue,
-                                          totalVotes: item.vote_count,
-                                          }
-                                    } else {
-                                          return { 
-                                          id: item.id,
-                                          title: item.title,
-                                          src: null, 
-                                          rating: item.vote_average,
-                                          releaseYear: item.release_date,
-                                          overview: item.overview,
-                                          popularity: item.popularity,
-                                          revenue: item.revenue,
-                                          totalVotes: item.vote_count,
-                                          }
-                                    }
-                              })
-                              console.log("Recommended",  this.recommendedItems, this.item.id)
+                              .map(item => getItem(item))                              
                         })
                         .catch(function (error) {
                               console.log(error);
