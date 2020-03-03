@@ -16,7 +16,7 @@
                                     <p> {{ movie.overview }}</p>
                               </b-col>
                         </b-row>
-                        <b-button class="button" v-on:click="goBack">Back</b-button>      
+                        <Recommended/>
                   </b-card>
             </div>
             <Footer />
@@ -27,6 +27,7 @@
 import Vue from 'vue'
 import NavBar from '../NavBar.vue'
 import Footer from '../Footer.vue'
+import Recommended from './Recommended.vue'
 
 import axios from 'axios'
 
@@ -40,6 +41,7 @@ export default Vue.extend({
       components: {
             NavBar,
             Footer,
+            Recommended,
       },
       methods: {
             goBack() {
