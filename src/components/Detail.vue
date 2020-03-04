@@ -16,7 +16,7 @@
                                     <p> {{ movie.overview }}</p>
                               </b-col>
                         </b-row>
-                        <b-button v-on:click="fetchItem">Try it again</b-button>
+                        <Recommended/>
                   </b-card>
             </div>
             <Footer />
@@ -27,14 +27,14 @@
 import Vue from 'vue'
 import NavBar from './NavBar.vue'
 import Footer from './Footer.vue'
-
-import { randomId } from '../helpers/randomId'
-import { getItem } from '../helpers/getItem'
+import Recommended from './Recommended.vue'
 
 import axios from 'axios'
 
+import { getItem } from '../helpers/getItem'
+
 export default Vue.extend({
-      name: 'Random',
+      name: 'Detail',
       data() {
             return {
                   item: null
@@ -43,23 +43,23 @@ export default Vue.extend({
       components: {
             NavBar,
             Footer,
+            Recommended,
       },
       methods: {
             fetchItem() {
-            randomId().then(randomId => { 
-                  axios.get('https://api.themoviedb.org/3/movie/' + randomId  + '?api_key=a109923888458bdee8244628cbd0abb2&language=en-US')
+                  axios.get('https://api.themoviedb.org/3/movie/' + this.$route.params.id + '?api_key=a109923888458bdee8244628cbd0abb2&language=en-US')
                         .then(response => {
-                              if(response.data.adult) throw new Error('Porn!')
-                              this.item = [response.data].map(item => getItem(item)) 
+                              this.item = [response.data].map(item => getItem(item))
                         })
-                        .catch((error) => {
+                        .catch(function (error) {
                               console.log(error);
-                              this.fetchItem()
                         })
-                  })
-            }
+                  }
       },
       mounted() {
+            this.fetchItem()
+      },
+      updated() {
             this.fetchItem()
       }
 });
@@ -84,7 +84,7 @@ img {
 .card {
       padding: 0 20px;
 }
-.btn-secondary {
+.button {
       margin: auto;
       border-color: #102E4A;
       background-color: #102E4A;

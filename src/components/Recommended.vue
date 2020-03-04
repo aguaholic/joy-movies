@@ -1,25 +1,29 @@
 <template>
-      <div class="recommended">
-            <div v-for="(recItem, index) in recommendedItems" v-bind:key="index" v-on:click="showDetail($event, recItem)" >
-                  <b-card
-                        v-bind:title="recItem.title"
-                        v-bind:img-src="recItem.src" 
-                        v-bind:alt="recItem.title"
-                        img-top
-                        tag="article"
-                        style="max-width: 15rem;"
-                        class="mb-2"
-                  >
-                  </b-card>
-            </div> 
+      <div>
+            <h4>Recommended for you</h4>
+            <div class="recommended">
+                  <div v-for="(recItem, index) in recommendedItems" v-bind:key="index" v-on:click="showDetail($event, recItem)">
+                        <b-card
+                              v-bind:title="recItem.title"
+                              v-bind:img-src="recItem.src" 
+                              v-bind:alt="recItem.title"
+                              img-top
+                              tag="article"
+                              style="max-width: 15rem;"
+                              class="mb-2"
+                        >
+                        </b-card>
+                  </div> 
+            </div>
       </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+
 import axios from 'axios'
 
-import { getItem } from '../../helpers/getItem'
+import { getItem } from '../helpers/getItem'
 
 export default Vue.extend({
       name: 'Recommended',
@@ -54,20 +58,20 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.recommended {
+      width: 100%;
+      display: inline-flex;
+      justify-content: space-between;
+}
+@media only screen and (max-width: 600px) {
       .recommended {
-            width: 100%;
-            display: inline-flex;
-            justify-content: space-between;
+            flex-direction: column;
       }
-      @media only screen and (max-width: 600px) {
-            .recommended {
-                  flex-direction: column;
-            }
-      }
-      img:hover {
-            cursor: pointer;
-      }
-      h4 {
-            text-align: center;
-            }
+}
+img:hover {
+      cursor: pointer;
+}
+h4 {
+      margin-bottom: 12px;
+}
 </style>

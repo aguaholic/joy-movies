@@ -35,10 +35,10 @@ export default Vue.extend({
 </script>
 
 <style>
-      .list-item {
-            margin-bottom: 10px;
-      }
-      li:hover {
-            cursor: pointer;
-      }
+.list-item {
+      margin-bottom: 10px;
+}
+li:hover {
+      cursor: pointer;
+}
 </style>

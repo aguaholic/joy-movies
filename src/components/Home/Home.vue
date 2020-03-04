@@ -8,10 +8,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import axios from 'axios'
 import NavBar from '../NavBar.vue'
 import List from './List.vue'
 import Footer from '../Footer.vue'
+
+import axios from 'axios'
+
+import { getItem } from '../../helpers/getItem'
 
 interface Item {
   id: number,
@@ -34,35 +37,8 @@ export default Vue.extend({
         .then(response => {
           this.items = response.data.results
           .slice(0, 10)
-          .map(item => {
-            if (item.backdrop_path) {
-              return { 
-                id: item.id,
-                title: item.title,
-                src: 'https://image.tmdb.org/t/p/w500'+ item.backdrop_path, 
-                rating: item.vote_average,
-                releaseYear: item.release_date
-              }
-            } else if (item.poster_path){
-              return { 
-                id: item.id,
-                title: item.title,
-                src: 'https://image.tmdb.org/t/p/w500'+ item.poster_path, 
-                rating: item.vote_average,
-                releaseYear: item.release_date
-              }
-            } else {
-              return { 
-                id: item.id,
-                title: item.title,
-                src: null, 
-                rating: item.vote_average,
-                releaseYear: item.release_date
-              }
-            }
+          .map(item => getItem(item))
           })
-         console.log(response)
-        })
         .catch(function (error) {
           console.log(error);
         })

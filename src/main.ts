@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Home from '../src/components/Home/Home.vue'
-import Detail from '../src/components/Home/Detail.vue'
+import Detail from '../src/components/Detail.vue'
 import Random from '../src/components/Random.vue'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'

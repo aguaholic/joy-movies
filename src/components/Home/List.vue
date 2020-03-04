@@ -33,4 +33,3 @@ ul {
       background-color: #F8F5EE;
 }
 </style>
-
