@@ -37,7 +37,7 @@ export default Vue.extend({
       name: 'Random',
       data() {
             return {
-                  item: null
+                  item: null as Item[] | null
             }
       },
       components: {

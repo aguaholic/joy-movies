@@ -37,7 +37,7 @@ export default Vue.extend({
       name: 'Detail',
       data() {
             return {
-                  item: null
+                  item: null as Item[] | null
             }
       },
       components: {

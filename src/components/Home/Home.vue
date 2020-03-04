@@ -16,14 +16,6 @@ import axios from 'axios'
 
 import { getItem } from '../../helpers/getItem'
 
-interface Item {
-  id: number,
-  title: string,
-  src: string, 
-  rating: number,
-  releaseYear: string
-}
-
 export default Vue.extend({
   name: 'Home',
     data() {
