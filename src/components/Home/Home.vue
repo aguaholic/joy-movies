@@ -20,6 +20,12 @@ import { getItem } from '../../helpers/getItem'
 
 export default Vue.extend({
   name: 'Home',
+  components: {
+    NavBar,
+    List,
+    Footer,
+    Sorting,
+  },
     data() {
       return {
         items: null
@@ -43,12 +49,6 @@ export default Vue.extend({
   },
   mounted() {
     this.fetchItems()
-  },
-  components: {
-    NavBar,
-    List,
-    Footer,
-    Sorting,
   },
 });
 </script>

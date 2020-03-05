@@ -88,5 +88,11 @@ img {
       margin: auto;
       border-color: #102E4A;
       background-color: #102E4A;
+      border-radius: 0;
+}
+@media only screen and (max-width: 600px) {
+      .btn-secondary {
+            margin: auto;
+      }
 }
 </style>

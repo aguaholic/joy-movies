@@ -27,8 +27,8 @@ ul {
       padding: 0;
 }
 .list {
-      padding: 40px;
-      margin: 10px 15%;
+      padding: 5px 40px 40px;
+      margin: 0 15% 10px;
       background-color: #F8F5EE;
 }
 </style>
