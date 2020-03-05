@@ -1,19 +1,19 @@
 <template>
       <div>
             <NavBar />
-            <div class="detail" v-bind:item="item" v-for="(movie, index) in item" v-bind:key="index">
-                  <b-img v-bind:src="movie.src" fluid v-bind:alt="movie.title"></b-img>
-                  <b-card class="card" v-bind:title="movie.title">
+            <div class="detail" v-if="item">
+                  <b-img v-bind:src="item.src" fluid v-bind:alt="item.title"></b-img>
+                  <b-card class="card" v-bind:title="item.title">
                         <b-row no-gutters>
                               <b-col md="6">
-                                    <p>Release year: {{ movie.releaseYear}}</p>
-                                    <p>Rating: {{ movie.rating }}</p>
-                                    <p>Popularity: {{ movie.popularity }}</p>
-                                    <p>Total revenue: {{ movie.revenue }}</p>
-                                    <p>Total of votes: {{ movie.totalVotes }}</p>
+                                    <p>Release year: {{ item.releaseYear}}</p>
+                                    <p>Rating: {{ item.rating }}</p>
+                                    <p>Popularity: {{ item.popularity }}</p>
+                                    <p>Total revenue: {{ item.revenue }}</p>
+                                    <p>Total of votes: {{ item.totalVotes }}</p>
                               </b-col>
                               <b-col md="6">
-                                    <p> {{ movie.overview }}</p>
+                                    <p> {{ item.overview }}</p>
                               </b-col>
                         </b-row>
                         <Recommended/>
@@ -37,7 +37,7 @@ export default Vue.extend({
       name: 'Detail',
       data() {
             return {
-                  item: null as Item[] | null
+                  item: null
             }
       },
       components: {
@@ -49,7 +49,7 @@ export default Vue.extend({
             fetchItem() {
                   axios.get('https://api.themoviedb.org/3/movie/' + this.$route.params.id + '?api_key=a109923888458bdee8244628cbd0abb2&language=en-US')
                         .then(response => {
-                              this.item = [response.data].map(item => getItem(item))
+                              this.item = getItem(response.data)
                         })
                         .catch(function (error) {
                               console.log(error);

@@ -29,7 +29,7 @@ export default Vue.extend({
       name: 'Recommended',
       data() {
             return {
-                  recommendedItems: null as Item[] | null,
+                  recommendedItems: null,
             }
       },
       methods: {

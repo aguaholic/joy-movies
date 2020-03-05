@@ -1,4 +1,4 @@
-interface ResponseItem {
+export interface ResponseItem {
       id: string,
       title: string,
       backdrop_path?: string,

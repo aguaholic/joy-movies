@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <NavBar />
-      <List v-bind:items="items"/>
-      <Footer />
+    <Sorting v-bind:items="items" v-bind:onSort="sorted"/>
+    <List v-bind:items="items"/>
+    <Footer />
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import Vue from 'vue'
 import NavBar from '../NavBar.vue'
 import List from './List.vue'
 import Footer from '../Footer.vue'
+import Sorting from './Sorting.vue'
 
 import axios from 'axios'
 
@@ -20,7 +22,7 @@ export default Vue.extend({
   name: 'Home',
     data() {
       return {
-        items: null as Item[] | null
+        items: null
       }
   },
   methods: {
@@ -34,6 +36,9 @@ export default Vue.extend({
         .catch(function (error) {
           console.log(error);
         })
+    },
+    sorted(items) {
+      this.items = items
     }
   },
   mounted() {
@@ -43,6 +48,7 @@ export default Vue.extend({
     NavBar,
     List,
     Footer,
+    Sorting,
   },
 });
 </script>
