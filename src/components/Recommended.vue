@@ -28,6 +28,7 @@ import axios from 'axios'
 
 // eslint-disable-next-line no-unused-vars
 import { getItem, ResponseItem } from '../helpers/getItem'
+import { apiKey, apiRoot } from '../constants'
 
 export default Vue.extend({
   name: 'Recommended',
@@ -44,7 +45,7 @@ export default Vue.extend({
   },
   methods: {
     fetchRecommended () {
-      axios.get('https://api.themoviedb.org/3/movie/' + this.$route.params.id + '/recommendations?api_key=a109923888458bdee8244628cbd0abb2&language=en-US&page=1')
+      axios.get(apiRoot + 'movie/' + this.$route.params.id + '/recommendations?api_key=' + apiKey + '&language=en-US&page=1')
         .then(response => {
           this.recommendedItems = response.data.results
             .slice(0, 3)

@@ -43,6 +43,7 @@ import Footer from './Footer.vue'
 import { randomId } from '../helpers/randomId'
 // eslint-disable-next-line no-unused-vars
 import { getItem, Item } from '../helpers/getItem'
+import { apiKey, apiRoot } from '../constants'
 
 import axios from 'axios'
 
@@ -68,7 +69,7 @@ export default Vue.extend({
     // Here the id got from randomId(which is explained in its file) is fetched from the API.
     fetchItem () {
       randomId().then(randomId => {
-        axios.get('https://api.themoviedb.org/3/movie/' + randomId + '?api_key=a109923888458bdee8244628cbd0abb2&language=en-US')
+        axios.get(apiRoot + 'movie/' + randomId + '?api_key=' + apiKey + '&language=en-US')
           .then(response => {
             // in this url I cannot block porn, so I use an if statement instead
             // every adult movie is not shown but it throws an error

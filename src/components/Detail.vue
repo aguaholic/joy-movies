@@ -43,6 +43,7 @@ import axios from 'axios'
 
 // eslint-disable-next-line no-unused-vars
 import { getItem, Item } from '../helpers/getItem'
+import { apiKey, apiRoot } from '../constants'
 
 interface Data {
   item: null | Item
@@ -68,7 +69,7 @@ export default Vue.extend({
   },
   methods: {
     fetchItem () {
-      axios.get('https://api.themoviedb.org/3/movie/' + this.$route.params.id + '?api_key=a109923888458bdee8244628cbd0abb2&language=en-US')
+      axios.get(apiRoot + 'movie/' + this.$route.params.id + '?api_key=' + apiKey + '&language=en-US')
         .then(response => {
           this.item = getItem(response.data)
         })
