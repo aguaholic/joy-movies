@@ -2,30 +2,28 @@
     <div>
         <NavBar />
         <div
-            v-for="(movie, index) in item"
-            :key="index"
+            v-if="item"
             class="detail"
-            :item="item"
         >
             <b-img
-                :src="movie.src"
+                :src="item.src"
                 fluid
-                :alt="movie.title"
+                :alt="item.title"
             />
             <b-card
                 class="card"
-                :title="movie.title"
+                :title="item.title"
             >
                 <b-row no-gutters>
                     <b-col md="6">
-                        <p>Release year: {{ movie.releaseYear }}</p>
-                        <p>Rating: {{ movie.rating }}</p>
-                        <p>Popularity: {{ movie.popularity }}</p>
-                        <p>Total revenue: {{ movie.revenue }}</p>
-                        <p>Total of votes: {{ movie.totalVotes }}</p>
+                        <p>Release year: {{ item.releaseYear }}</p>
+                        <p>Rating: {{ item.rating }}</p>
+                        <p>Popularity: {{ item.popularity }}</p>
+                        <p>Total revenue: {{ item.revenue }}</p>
+                        <p>Total of votes: {{ item.totalVotes }}</p>
                     </b-col>
                     <b-col md="6">
-                        <p> {{ movie.overview }}</p>
+                        <p> {{ item.overview }}</p>
                     </b-col>
                 </b-row>
                 <b-button @click="fetchItem">
@@ -75,7 +73,7 @@ export default Vue.extend({
             // in this url I cannot block porn, so I use an if statement instead
             // every adult movie is not shown but it throws an error
             if (response.data.adult) throw new Error('Porn!')
-            this.item = [response.data].map(item => getItem(item))[0]
+            this.item = getItem(response.data)
           })
           .catch((error) => {
             console.log(error)
