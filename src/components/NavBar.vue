@@ -44,6 +44,9 @@ export default Vue.extend({
   z-index: 1;
   padding: 0;
 }
+.navbar-dark .navbar-nav .nav-link {
+  color: #c0c0c0 !important;
+}
 a {
   margin: 10px;
 }
