@@ -67,15 +67,19 @@ export default Vue.extend({
     this.fetchItem()
   },
   methods: {
+    // Here the id got from randomId(which is explained in its file) is fetched from the API.
     fetchItem () {
       randomId().then(randomId => {
         axios.get('https://api.themoviedb.org/3/movie/' + randomId + '?api_key=a109923888458bdee8244628cbd0abb2&language=en-US')
           .then(response => {
+            // in this url I cannot block porn, so I use an if statement instead
+            // every adult movie is not shown but it throws an error
             if (response.data.adult) throw new Error('Porn!')
             this.item = [response.data].map(item => getItem(item))[0]
           })
           .catch((error) => {
             console.log(error)
+            // in case of an error, another movie is fetched
             this.fetchItem()
           })
       })
