@@ -15,19 +15,19 @@ Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 
 const routes = [
-  { path: "/", component: Home },
+  { path: '/', component: Home },
   { path: '/detail/:id', name: 'detail', component: Detail },
-  { path: '/random', component: Random },
+  { path: '/random', component: Random }
 ]
 
 const router = new VueRouter({
   routes,
-  mode: 'history',
+  mode: 'history'
 })
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(App),
+  render: h => h(App)
 }).$mount('#app')

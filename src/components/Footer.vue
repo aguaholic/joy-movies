@@ -1,13 +1,13 @@
 <template>
-      <div class="footer"></div>
+    <div class="footer" />
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from 'vue'
 
 export default Vue.extend({
-      name: 'Footer',
-});
+  name: 'Footer'
+})
 </script>
 
 <style scoped>

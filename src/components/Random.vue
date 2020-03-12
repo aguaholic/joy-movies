@@ -1,26 +1,40 @@
 <template>
-      <div>
-            <NavBar />
-            <div class="detail" v-bind:item="item" v-for="(movie, index) in item" v-bind:key="index">
-                  <b-img v-bind:src="movie.src" fluid v-bind:alt="movie.title"></b-img>
-                  <b-card class="card" v-bind:title="movie.title">
-                        <b-row no-gutters>
-                              <b-col md="6">
-                                    <p>Release year: {{ movie.releaseYear}}</p>
-                                    <p>Rating: {{ movie.rating }}</p>
-                                    <p>Popularity: {{ movie.popularity }}</p>
-                                    <p>Total revenue: {{ movie.revenue }}</p>
-                                    <p>Total of votes: {{ movie.totalVotes }}</p>
-                              </b-col>
-                              <b-col md="6">
-                                    <p> {{ movie.overview }}</p>
-                              </b-col>
-                        </b-row>
-                        <b-button v-on:click="fetchItem">Try it again</b-button>
-                  </b-card>
-            </div>
-            <Footer />
-      </div>
+    <div>
+        <NavBar />
+        <div
+            v-for="(movie, index) in item"
+            :key="index"
+            class="detail"
+            :item="item"
+        >
+            <b-img
+                :src="movie.src"
+                fluid
+                :alt="movie.title"
+            />
+            <b-card
+                class="card"
+                :title="movie.title"
+            >
+                <b-row no-gutters>
+                    <b-col md="6">
+                        <p>Release year: {{ movie.releaseYear }}</p>
+                        <p>Rating: {{ movie.rating }}</p>
+                        <p>Popularity: {{ movie.popularity }}</p>
+                        <p>Total revenue: {{ movie.revenue }}</p>
+                        <p>Total of votes: {{ movie.totalVotes }}</p>
+                    </b-col>
+                    <b-col md="6">
+                        <p> {{ movie.overview }}</p>
+                    </b-col>
+                </b-row>
+                <b-button @click="fetchItem">
+                    Try it again
+                </b-button>
+            </b-card>
+        </div>
+        <Footer />
+    </div>
 </template>
 
 <script lang="ts">
@@ -29,40 +43,45 @@ import NavBar from './NavBar.vue'
 import Footer from './Footer.vue'
 
 import { randomId } from '../helpers/randomId'
-import { getItem } from '../helpers/getItem'
+// eslint-disable-next-line no-unused-vars
+import { getItem, Item } from '../helpers/getItem'
 
 import axios from 'axios'
 
+interface Data {
+  item: null | Item
+}
+
 export default Vue.extend({
-      name: 'Random',
-      data() {
-            return {
-                  item: null
-            }
-      },
-      components: {
-            NavBar,
-            Footer,
-      },
-      methods: {
-            fetchItem() {
-            randomId().then(randomId => { 
-                  axios.get('https://api.themoviedb.org/3/movie/' + randomId  + '?api_key=a109923888458bdee8244628cbd0abb2&language=en-US')
-                        .then(response => {
-                              if(response.data.adult) throw new Error('Porn!')
-                              this.item = [response.data].map(item => getItem(item)) 
-                        })
-                        .catch((error) => {
-                              console.log(error);
-                              this.fetchItem()
-                        })
-                  })
-            }
-      },
-      mounted() {
+  name: 'Random',
+  components: {
+    NavBar,
+    Footer
+  },
+  data (): Data {
+    return {
+      item: null
+    }
+  },
+  mounted () {
+    this.fetchItem()
+  },
+  methods: {
+    fetchItem () {
+      randomId().then(randomId => {
+        axios.get('https://api.themoviedb.org/3/movie/' + randomId + '?api_key=a109923888458bdee8244628cbd0abb2&language=en-US')
+          .then(response => {
+            if (response.data.adult) throw new Error('Porn!')
+            this.item = [response.data].map(item => getItem(item))[0]
+          })
+          .catch((error) => {
+            console.log(error)
             this.fetchItem()
-      }
-});
+          })
+      })
+    }
+  }
+})
 </script>
 
 <style scoped>

@@ -1,35 +1,45 @@
 <template>
-      <div class="background">
-            <div class="sorting">
-                  <p>sort by rating</p>
-                  <b-button v-on:click="sortItemsUp">high to low</b-button>
-                  <b-button v-on:click="sortItemsDown">low to high</b-button>
-            </div>
-      </div>
+    <div class="background">
+        <div class="sorting">
+            <p>sort by rating</p>
+            <b-button @click="sortItemsUp">
+                high to low
+            </b-button>
+            <b-button @click="sortItemsDown">
+                low to high
+            </b-button>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-      name: 'Sorting',
-      props: {
-            items: Array,
-            onSort: Function,
-      },
-      methods: {
-            sortItemsUp() {
-                  const items = [...this.items]
-                  const sortedRating = items.sort((a, b) => b.rating - a.rating)
-                  this.onSort(sortedRating)
-            },
-            sortItemsDown() {
-                  const items = [...this.items]
-                  const sortedRating = items.sort((a, b) => a.rating - b.rating)
-                  this.onSort(sortedRating)
-            }
-      },
-});
+  name: 'Sorting',
+  props: {
+    items: {
+      type: Array,
+      default: null
+    },
+    onSort: {
+      type: Function,
+      default: null
+    }
+  },
+  methods: {
+    sortItemsUp () {
+      const items = [...this.items]
+      const sortedRating = items.sort((a, b) => b.rating - a.rating)
+      this.onSort(sortedRating)
+    },
+    sortItemsDown () {
+      const items = [...this.items]
+      const sortedRating = items.sort((a, b) => a.rating - b.rating)
+      this.onSort(sortedRating)
+    }
+  }
+})
 </script>
 
 <style scoped>
