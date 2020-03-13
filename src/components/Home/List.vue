@@ -34,8 +34,14 @@ ul {
   padding: 0;
 }
 .list {
-  padding: 5px 40px 40px;
+  padding: 5px 40px 20px;
   margin: 0 15% 10px;
   background-color: #f8f5ee;
+}
+@media only screen and (max-width: 600px) {
+  .list {
+    padding: 5px;
+    margin: 0 5%;
+  }
 }
 </style>

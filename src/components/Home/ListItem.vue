@@ -49,9 +49,9 @@ export default Vue.extend({
 
 <style>
 .list-item {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 li:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 </style>

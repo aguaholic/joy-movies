@@ -64,19 +64,24 @@ export default Vue.extend({
 
 <style scoped>
 .recommended {
-      width: 100%;
-      display: inline-flex;
-      justify-content: space-between;
-}
-@media only screen and (max-width: 600px) {
-      .recommended {
-            flex-direction: column;
-      }
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
 }
 img:hover {
-      cursor: pointer;
+  cursor: pointer;
 }
 h4 {
-      margin-bottom: 12px;
+  margin-bottom: 12px;
+}
+@media only screen and (max-width: 600px) {
+  .recommended {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  /* this !important is here because Bootstrap added an inline style in this class */
+  article.card.mb-2 {
+    max-width: 100% !important;
+  }
 }
 </style>

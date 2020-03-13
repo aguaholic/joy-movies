@@ -3,7 +3,7 @@
         <NavBar />
         <div
             v-if="item"
-            class="detail"
+            class="random"
         >
             <b-img
                 :src="item.src"
@@ -80,33 +80,35 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.detail {
-      display: flex;
-      flex-direction: column;
-      padding: 40px;
-      margin: 10px 15%;
-      background-color: #F8F5EE;
-}
-@media only screen and (max-width: 600px) {
-      .detail {
-            padding: 0;
-      }
+.random {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  margin: 10px 15%;
+  background-color: #F8F5EE;
 }
 img {
-      margin: 0 auto 20px;
+  margin: 0 auto 20px;
 }
 .card {
-      padding: 0 20px;
+  padding: 0 20px;
 }
 .btn-secondary {
-      margin: auto;
-      border-color: #102E4A;
-      background-color: #102E4A;
-      border-radius: 0;
+  margin: auto;
+  border-color: #102E4A;
+  background-color: #102E4A;
+  border-radius: 0;
 }
 @media only screen and (max-width: 600px) {
-      .btn-secondary {
-            margin: auto;
-      }
+  .btn-secondary {
+    margin: auto;
+  }
+  .random {
+    padding: 5px;
+    margin: 0 5%;
+  }
+  .card {
+    padding: 0;
+  }
 }
 </style>

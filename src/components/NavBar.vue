@@ -35,6 +35,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+/* I had to use !important to override Bootstrap's style */
 .bg-info  {
   background-color: #102E4A !important;
 }
@@ -52,5 +53,18 @@ a {
 }
 nav {
   width: 100%;
+}
+@media only screen and (max-width: 600px) {
+  .navbar-toggler {
+    margin-right: 10px;
+  }
+  .nav-item {
+    border-bottom: .8px solid rgb(30,85,137, .3);
+    background-color:  rgb(30,85,137, .1);
+  }
+  .nav-link {
+    padding: 4px;
+    margin: 5px 5px 5px 10px;
+  }
 }
 </style>
