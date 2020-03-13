@@ -40,12 +40,9 @@ import Vue from 'vue'
 import NavBar from './NavBar.vue'
 import Footer from './Footer.vue'
 
-import { randomId } from '../helpers/randomId'
+import { randomItem } from '../helpers/randomItem'
 // eslint-disable-next-line no-unused-vars
 import { getItem, Item } from '../helpers/getItem'
-import { apiKey, apiRoot } from '../constants'
-
-import axios from 'axios'
 
 interface Data {
   item: null | Item
@@ -66,22 +63,17 @@ export default Vue.extend({
     this.fetchItem()
   },
   methods: {
-    // Here the id got from randomId(which is explained in its file) is fetched from the API.
     fetchItem () {
-      randomId().then(randomId => {
-        axios.get(apiRoot + 'movie/' + randomId + '?api_key=' + apiKey + '&language=en-US')
-          .then(response => {
-            // in this url I cannot block porn, so I use an if statement instead
-            // every adult movie is not shown but it throws an error
-            if (response.data.adult) throw new Error('Porn!')
-            this.item = getItem(response.data)
-          })
-          .catch((error) => {
-            console.log(error)
-            // in case of an error, another movie is fetched
-            this.fetchItem()
-          })
-      })
+      randomItem()
+        .then((item) => {
+          this.item = item
+        }).catch(() => {
+          // This function is going to fail sometimes because some of the ids don't exist
+          // anymore or are adult movies(which are blocked in randomItem).
+          // If it fails, it calls fetchItem again, so there is always an available movie to
+          // be shown in the page.
+          this.fetchItem()
+        })
     }
   }
 })
