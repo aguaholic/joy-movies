@@ -27,7 +27,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 // eslint-disable-next-line no-unused-vars
-import { getItem, ResponseItem } from '../helpers/getItem'
+import { getItem, ResponseItem, Item } from '../helpers/getItem'
 import { apiKey, apiRoot } from '../constants'
 
 export default Vue.extend({
@@ -55,7 +55,7 @@ export default Vue.extend({
           console.log(error)
         })
     },
-    showDetail (e, item) {
+    showDetail (e: Event, item: Item) {
       this.$router.push({ name: 'detail', params: { id: item.id } })
     }
   }

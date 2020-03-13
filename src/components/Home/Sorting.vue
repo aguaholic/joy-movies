@@ -14,12 +14,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
+// eslint-disable-next-line no-unused-vars
+import { Item } from '../../helpers/getItem'
 
 export default Vue.extend({
   name: 'Sorting',
   props: {
     items: {
-      type: Array,
+      type: Array as () => Item[],
       default: null
     },
     onSort: {

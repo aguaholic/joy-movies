@@ -19,7 +19,7 @@ export interface Item {
   rating: number,
   releaseYear: string,
   overview: string,
-  popularity: string,
+  popularity: number,
   revenue: number,
   totalVotes: number
 }

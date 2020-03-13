@@ -58,7 +58,7 @@ export default Vue.extend({
           console.log(error)
         })
     },
-    sorted (items) {
+    sorted (items: Item[]) {
       this.items = items
     }
   }
