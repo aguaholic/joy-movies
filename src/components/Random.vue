@@ -1,36 +1,14 @@
 <template>
     <div>
         <NavBar />
-        <div
+        <Movie
             v-if="item"
-            class="random"
+            :item="item"
         >
-            <b-img
-                :src="item.src"
-                fluid
-                :alt="item.title"
-            />
-            <b-card
-                class="card"
-                :title="item.title"
-            >
-                <b-row no-gutters>
-                    <b-col md="6">
-                        <p>Release year: {{ item.releaseYear }}</p>
-                        <p>Rating: {{ item.rating }}</p>
-                        <p>Popularity: {{ item.popularity }}</p>
-                        <p>Total revenue: {{ item.revenue }}</p>
-                        <p>Total of votes: {{ item.totalVotes }}</p>
-                    </b-col>
-                    <b-col md="6">
-                        <p> {{ item.overview }}</p>
-                    </b-col>
-                </b-row>
-                <b-button @click="fetchItem">
-                    Try it again
-                </b-button>
-            </b-card>
-        </div>
+            <b-button @click="fetchItem">
+                Try it again
+            </b-button>
+        </Movie>
         <Footer />
     </div>
 </template>
@@ -38,6 +16,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import NavBar from './NavBar.vue'
+import Movie from './Movie.vue'
 import Footer from './Footer.vue'
 
 import { randomItem } from '../helpers/randomItem'
@@ -52,6 +31,7 @@ export default Vue.extend({
   name: 'Random',
   components: {
     NavBar,
+    Movie,
     Footer
   },
   data (): Data {
@@ -80,35 +60,22 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.random {
-  display: flex;
-  flex-direction: column;
-  padding: 40px;
-  margin: 10px 15%;
-  background-color: #F8F5EE;
-}
-img {
-  margin: 0 auto 20px;
-}
-.card {
-  padding: 0 20px;
-}
 .btn-secondary {
-  margin: auto;
   border-color: #102E4A;
   background-color: #102E4A;
   border-radius: 0;
 }
+.btn-secondary:focus {
+  border-color: #102E4A;
+  background-color: #102E4A;
+}
+.btn-secondary:hover {
+  background-color: rgb(30,85,137, .1);
+  color: #102E4A;
+}
 @media only screen and (max-width: 600px) {
   .btn-secondary {
     margin: auto;
-  }
-  .random {
-    padding: 5px;
-    margin: 0 5%;
-  }
-  .card {
-    padding: 0;
   }
 }
 </style>
