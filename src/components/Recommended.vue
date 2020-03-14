@@ -3,7 +3,7 @@
         <h4>Recommended for you</h4>
         <div class="recommended">
             <div
-                v-for="(recItem, index) in recommendedItems"
+                v-for="(recItem, index) in recommended"
                 :key="index"
                 @click="showDetail($event, recItem)"
             >
@@ -24,37 +24,27 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import axios from 'axios'
-
+import { mapActions, mapState } from 'vuex'
+// eslint-disable-next-line no-unused-vars
+import { State } from '../store'
 // eslint-disable-next-line no-unused-vars
 import { getItem, ResponseItem, Item } from '../helpers/getItem'
-import { apiKey, apiRoot } from '../constants'
 
 export default Vue.extend({
   name: 'Recommended',
-  data () {
-    return {
-      recommendedItems: null
-    }
-  },
+  computed: mapState({
+    recommended: state => (state as State).recommended
+  }),
   mounted () {
-    this.fetchRecommended()
+    this.fetchRecommended(this.$route.params.id)
   },
   updated () {
-    this.fetchRecommended()
+    this.fetchRecommended(this.$route.params.id)
   },
   methods: {
-    fetchRecommended () {
-      axios.get(apiRoot + 'movie/' + this.$route.params.id + '/recommendations?api_key=' + apiKey + '&language=en-US&page=1')
-        .then(response => {
-          this.recommendedItems = response.data.results
-            .slice(0, 3)
-            .map((item: ResponseItem) => getItem(item))
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    },
+    ...mapActions([
+      'fetchRecommended'
+    ]),
     showDetail (e: Event, item: Item) {
       this.$router.push({ name: 'detail', params: { id: item.id } })
     }

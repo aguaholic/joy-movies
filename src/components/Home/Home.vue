@@ -17,15 +17,11 @@ import List from './List.vue'
 import Footer from '../Footer.vue'
 import Sorting from './Sorting.vue'
 
-import axios from 'axios'
-
+import { mapActions, mapState } from 'vuex'
 // eslint-disable-next-line no-unused-vars
-import { getItem, ResponseItem, Item } from '../../helpers/getItem'
-import { apiKey, apiRoot } from '../../constants'
-
-interface Data {
-  items: null | Item[]
-}
+import { State } from '../../store'
+// eslint-disable-next-line no-unused-vars
+import { Item } from '../../helpers/getItem'
 
 export default Vue.extend({
   name: 'Home',
@@ -35,29 +31,16 @@ export default Vue.extend({
     Footer,
     Sorting
   },
-  data (): Data {
-    return {
-      items: null
-    }
-  },
+  computed: mapState({
+    items: state => (state as State).movies
+  }),
   mounted () {
-    this.fetchItems()
+    this.fetchMovies()
   },
   methods: {
-    fetchItems () {
-      axios
-        .get(
-          apiRoot + 'search/movie/?api_key=' + apiKey + '&page=1&language=en-US&query=joy&include_adult=false'
-        )
-        .then(response => {
-          this.items = response.data.results
-            .slice(0, 10)
-            .map((item: ResponseItem) => getItem(item))
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    },
+    ...mapActions([
+      'fetchMovies'
+    ]),
     sorted (items: Item[]) {
       this.items = items
     }

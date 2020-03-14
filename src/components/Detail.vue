@@ -18,15 +18,9 @@ import Movie from './Movie.vue'
 import Footer from './Footer.vue'
 import Recommended from './Recommended.vue'
 
-import axios from 'axios'
-
+import { mapActions, mapState } from 'vuex'
 // eslint-disable-next-line no-unused-vars
-import { getItem, Item } from '../helpers/getItem'
-import { apiKey, apiRoot } from '../constants'
-
-interface Data {
-  item: null | Item
-}
+import { State } from '../store'
 
 export default Vue.extend({
   name: 'Detail',
@@ -36,27 +30,19 @@ export default Vue.extend({
     Footer,
     Recommended
   },
-  data (): Data {
-    return {
-      item: null
-    }
-  },
+  computed: mapState({
+    item: state => (state as State).movie
+  }),
   mounted () {
-    this.fetchItem()
+    this.fetchMovie(this.$route.params.id)
   },
   updated () {
-    this.fetchItem()
+    this.fetchMovie(this.$route.params.id)
   },
   methods: {
-    fetchItem () {
-      axios.get(apiRoot + 'movie/' + this.$route.params.id + '?api_key=' + apiKey + '&language=en-US')
-        .then(response => {
-          this.item = getItem(response.data)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
+    ...mapActions([
+      'fetchMovie'
+    ])
   }
 })
 </script>
