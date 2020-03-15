@@ -69,21 +69,21 @@ export function makeStore () {
           })
       },
       fetchRandom (context) {
-        // This function is going to fail sometimes because some of the ids don't exist
-        // anymore or are adult movies(which are blocked in randomItem).
-        // If it fails, it calls fetchItem again, so there is always an available movie to
-        // be shown in the page.
         return randomId()
           .then(randomId => {
             return axios.get(apiRoot + 'movie/' + randomId + '?api_key=' + apiKey + '&language=en-US')
               .then(response => {
-                // I use an if statement to block porn.
+                // I use an if statement to block adult movies.
                 // Every adult movie is not shown but instead it throws an error.
                 if (response.data.adult) throw new Error('Only for adults!')
                 context.commit('setMovie', getItem(response.data))
               })
           })
           .catch(function () {
+            // This function is going to fail sometimes because some of the ids don't exist
+            // anymore or are adult movies.
+            // If it fails, it calls fetchRandom again, so there is always an available movie to
+            // be shown in the page.
             context.dispatch('fetchRandom')
           })
       }
