@@ -17,7 +17,7 @@ import List from './List.vue'
 import Footer from '../Footer.vue'
 import Sorting from './Sorting.vue'
 
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapMutations } from 'vuex'
 // eslint-disable-next-line no-unused-vars
 import { State } from '../../store'
 // eslint-disable-next-line no-unused-vars
@@ -41,8 +41,11 @@ export default Vue.extend({
     ...mapActions([
       'fetchMovies'
     ]),
+    ...mapMutations([
+      'setMovies'
+    ]),
     sorted (items: Item[]) {
-      this.items = items
+      this.setMovies(items)
     }
   }
 })
