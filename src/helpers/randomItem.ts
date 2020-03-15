@@ -10,7 +10,7 @@ import { getItem } from './getItem'
 // the way up to the latest movie added.
 // Knowing that, this latest id is multiplied by a random number, which gives me
 // a random movie id from the API's assortiment.
-function randomId () {
+export function randomId () {
   return axios.get(apiRoot + 'movie/latest?api_key=' + apiKey + '&language=en-US')
     .then(response => {
       const id = response.data.id

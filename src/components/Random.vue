@@ -5,7 +5,7 @@
             v-if="item"
             :item="item"
         >
-            <b-button @click="fetchItem">
+            <b-button @click="fetchRandom">
                 Try it again
             </b-button>
         </Movie>
@@ -19,13 +19,9 @@ import NavBar from './NavBar.vue'
 import Movie from './Movie.vue'
 import Footer from './Footer.vue'
 
-import { randomItem } from '../helpers/randomItem'
+import { mapActions, mapState } from 'vuex'
 // eslint-disable-next-line no-unused-vars
-import { getItem, Item } from '../helpers/getItem'
-
-interface Data {
-  item: null | Item
-}
+import { State } from '../store'
 
 export default Vue.extend({
   name: 'Random',
@@ -34,27 +30,16 @@ export default Vue.extend({
     Movie,
     Footer
   },
-  data (): Data {
-    return {
-      item: null
-    }
-  },
+  computed: mapState({
+    item: state => (state as State).movie
+  }),
   mounted () {
-    this.fetchItem()
+    this.fetchRandom()
   },
   methods: {
-    fetchItem () {
-      randomItem()
-        .then((item) => {
-          this.item = item
-        }).catch(() => {
-          // This function is going to fail sometimes because some of the ids don't exist
-          // anymore or are adult movies(which are blocked in randomItem).
-          // If it fails, it calls fetchItem again, so there is always an available movie to
-          // be shown in the page.
-          this.fetchItem()
-        })
-    }
+    ...mapActions([
+      'fetchRandom'
+    ])
   }
 })
 </script>

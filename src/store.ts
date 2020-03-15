@@ -4,6 +4,7 @@ import axios from 'axios'
 
 // eslint-disable-next-line no-unused-vars
 import { getItem, ResponseItem, Item } from './helpers/getItem'
+import { randomId } from './helpers/randomItem'
 import { apiKey, apiRoot } from './constants'
 
 export interface State {
@@ -65,6 +66,25 @@ export function makeStore () {
           })
           .catch(function (error) {
             console.log(error)
+          })
+      },
+      fetchRandom (context) {
+        // This function is going to fail sometimes because some of the ids don't exist
+        // anymore or are adult movies(which are blocked in randomItem).
+        // If it fails, it calls fetchItem again, so there is always an available movie to
+        // be shown in the page.
+        return randomId()
+          .then(randomId => {
+            return axios.get(apiRoot + 'movie/' + randomId + '?api_key=' + apiKey + '&language=en-US')
+              .then(response => {
+                // I use an if statement to block porn.
+                // Every adult movie is not shown but instead it throws an error.
+                if (response.data.adult) throw new Error('Only for adults!')
+                context.commit('setMovie', getItem(response.data))
+              })
+          })
+          .catch(function () {
+            context.dispatch('fetchRandom')
           })
       }
     }
