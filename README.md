@@ -4,6 +4,8 @@ This is an app built with Vue+Typescript where you'll find some movies that brin
 
 enJOY!
 
+![](joy-movies.gif)
+
 
 ## Project setup
 ```
